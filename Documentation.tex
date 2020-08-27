@@ -1,0 +1,55 @@
+%! Author = noahyewman
+%! Date = 27/04/2020
+
+% To be inserted wherever seems fit.
+
+
+\subsection{Module\textunderscore Create.py}
+
+To create a simple one-dimension mesh utilising Python, the Module\textunderscore Create.py program can be used.
+Module\textunderscore Create.py requires no parameters to be entered onto the command line, with the script running the user through the inputs.
+
+Module\textunderscore Create.py can be called using:
+\begin{lstlisting}[style=BashInputStyle]
+python3 module_create.py
+\end{lstlisting}
+
+The module parameters are:
+
+\begin{itemize}
+    \item \inlsh{coordinates}: The coordinates of which the mesh will be generated between.
+    \item \inlsh{nx}: The number of nodes along the x-direction.
+    \item \inlsh{ny}: The number of nodes along the y-direction.
+    \item \inlsh{shape\textunderscore type}: The desired shape type of the mesh, can be set to be Quadrilateral or Triangular.
+    \item \inlsh{comp\textunderscore ID}: Composite ID
+    \item \inlsh{chebychev}: Set to be True/False if the user wants a boundary layer made using Chebychev nodes.
+\end{itemize}
+
+\subsection{loadCAD.py}
+
+To generate a mesh from a .stp file, the loadCAD.py program can be used to import the CAD file and generate a high-order mesh using one command.
+
+To generate a surface mesh of order 15, with a minimum delta of 0.04, a maximum delta of 0.2 and an epsilon value of 0.02 use the following command:
+
+\begin{lstlisting}[style=BashInputStyle]
+python3 loadCAD.py 3d_sphere.stp 3d_sphere_high_order.xml 16 False 0.04 0.2 0.02
+\end{lstlisting}
+
+The output file will be a .xml which must be converted into a .vtu using the FieldConvert utility to view the mesh.
+
+To do this, use the command:
+
+\begin{lstlisting}[style=BashInputStyle]
+FieldConvert 3d_sphere_high_order.xml 3d_sphere_high_order.vtu
+\end{lstlisting}
+
+The parameters for this module are:
+
+\begin{itemize}
+  \item \inlsh{infile}: The name of the file to be meshed.
+  \item \inlsh{outfile}: Output file name (.xml).
+  \item \inlsh{nummode}: The order of the mesh.
+  \item \inlsh{mindelta}: The minimum delta.
+  \item \inlsh{maxdelta}: The maximum delta.
+  \item \inlsh{eps}: The epsilon value.
+\end{itemize}
